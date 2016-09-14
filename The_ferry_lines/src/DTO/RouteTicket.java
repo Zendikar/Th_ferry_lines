@@ -8,6 +8,7 @@ package DTO;
 import java.io.Serializable;
 import java.rmi.server.UID;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -18,20 +19,18 @@ import java.util.Objects;
 public class RouteTicket implements Serializable{
     UID ruteId;
     UID ferryLineId;
-    Date departure;
+    LocalDateTime departure;
     String destination;
     long distance;
     String season;
-    List<Person> passengerList;
 
-    public RouteTicket(UID ruteId, UID ferryLineId, Date departure, String destination, long distance, String season, List<Person> passengerList) {
+    public RouteTicket(UID ruteId, UID ferryLineId, LocalDateTime departure, String destination, long distance, String season) {
         this.ruteId = ruteId;
         this.ferryLineId = ferryLineId;
         this.departure = departure;
         this.destination = destination;
         this.distance = distance;
         this.season = season;
-        this.passengerList = passengerList;
     }
 
     public UID getRuteId() {
@@ -50,11 +49,11 @@ public class RouteTicket implements Serializable{
         this.ferryLineId = ferryLineId;
     }
 
-    public Date getDeparture() {
+    public LocalDateTime getDeparture() {
         return departure;
     }
 
-    public void setDeparture(Date departure) {
+    public void setDeparture(LocalDateTime departure) {
         this.departure = departure;
     }
 
@@ -82,14 +81,6 @@ public class RouteTicket implements Serializable{
         this.season = season;
     }
 
-    public List<Person> getPassengerList() {
-        return passengerList;
-    }
-
-    public void setPassengerList(List<Person> passengerList) {
-        this.passengerList = passengerList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -99,7 +90,6 @@ public class RouteTicket implements Serializable{
         hash = 71 * hash + Objects.hashCode(this.destination);
         hash = 71 * hash + (int) (this.distance ^ (this.distance >>> 32));
         hash = 71 * hash + Objects.hashCode(this.season);
-        hash = 71 * hash + Objects.hashCode(this.passengerList);
         return hash;
     }
 
@@ -133,15 +123,13 @@ public class RouteTicket implements Serializable{
         if (!Objects.equals(this.departure, other.departure)) {
             return false;
         }
-        if (!Objects.equals(this.passengerList, other.passengerList)) {
-            return false;
-        }
+     
         return true;
     }
 
     @Override
     public String toString() {
-        return "RouteTicket{" + "ruteId=" + ruteId + ", ferryLineId=" + ferryLineId + ", departure=" + departure + ", destination=" + destination + ", distance=" + distance + ", season=" + season + ", passengerList=" + passengerList + '}';
+        return "RouteTicket{" + "ruteId=" + ruteId + ", ferryLineId=" + ferryLineId + ", departure=" + departure + ", destination=" + destination + ", distance=" + distance + ", season=" + season + '}';
     }
     
 }

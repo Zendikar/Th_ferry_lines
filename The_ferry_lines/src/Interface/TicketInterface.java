@@ -6,13 +6,14 @@
 package Interface;
 
 import DTO.RouteTicket;
+import ETO.RouteNotFoundException;
 import java.util.List;
 
 /**
  *
  * @author Tobias
  */
-public interface TicketController {
+public interface TicketInterface {
     List<RouteTicket> getAvailableRoutes(RouteTicket query);
-    RouteTicket submitReservation(RouteTicket route);
+    RouteTicket submitReservation(RouteTicket route) throws RouteNotFoundException;
 }
